@@ -4,19 +4,26 @@
  */
 package com.mycompany.proyecto.examen;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author PC114
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
+    private CardLayout carLayout;
     public VentanaPrincipal() {
         initComponents();
     }
 
+    private void configurarCardLayout(){
+        carLayout = (CardLayout) jPanel3.getLayout();
+        
+        jPanel3.add(new Panel_Inicio(), "Inicio");
+        jPanel3.add(new Panel_Historial(), "Historial");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,7 +32,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         jLabel_Titulo = new javax.swing.JLabel();
@@ -115,11 +121,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HistorialActionPerformed
-        // TODO add your handling code here:
+        carLayout.show(jPanel2, "Historial");
     }//GEN-LAST:event_jButton_HistorialActionPerformed
 
     private void jButton_InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InicioActionPerformed
-        // TODO add your handling code here:
+        carLayout.show(jPanel2, "Inicio");
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     /**
