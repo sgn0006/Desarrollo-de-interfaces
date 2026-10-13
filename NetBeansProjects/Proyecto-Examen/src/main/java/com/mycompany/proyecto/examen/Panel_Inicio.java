@@ -75,24 +75,15 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(2, 6));
 
-        jLabel_Calculadora.setText("jLabel2");
+        jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/examen/Calculadora2.png"))); // NOI18N
+        jLabel_Calculadora.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel_Calculadora.setMaximumSize(new java.awt.Dimension(200, 200));
         jLabel_Calculadora.setPreferredSize(new java.awt.Dimension(50, 50));
         jPanel5.add(jLabel_Calculadora);
-
-        jLabel_Notas.setText("jLabel3");
         jPanel5.add(jLabel_Notas);
-
-        jLabel4.setText("jLabel4");
         jPanel5.add(jLabel4);
-
-        jLabel5.setText("jLabel5");
         jPanel5.add(jLabel5);
-
-        jLabel6.setText("jLabel6");
         jPanel5.add(jLabel6);
-
-        jLabel_Android.setText("jLabel7");
         jPanel5.add(jLabel_Android);
 
         jButton_Calculadora.setText("Calculadora");
@@ -126,17 +117,9 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jPanel7.add(jLabelUtilidades);
 
         jPanel8.setLayout(new java.awt.GridLayout(2, 4));
-
-        jLabel_Disco.setText("jLabel9");
         jPanel8.add(jLabel_Disco);
-
-        jLabel_Bateria.setText("jLabel10");
         jPanel8.add(jLabel_Bateria);
-
-        jLabel_CPU.setText("jLabel11");
         jPanel8.add(jLabel_CPU);
-
-        jLabel12.setText("jLabel12");
         jPanel8.add(jLabel12);
 
         jButton_Disco.setText("Disco");
@@ -205,14 +188,8 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jPanel4.add(jLabelCarpetas);
 
         jPanel9.setLayout(new java.awt.GridLayout(1, 0));
-
-        jLabel_Escritorio.setText("jLabel15");
         jPanel9.add(jLabel_Escritorio);
-
-        jLabel_Descargas.setText("jLabel16");
         jPanel9.add(jLabel_Descargas);
-
-        jLabel_Documentos.setText("jLabel17");
         jPanel9.add(jLabel_Documentos);
 
         jPanel4.add(jPanel9);
