@@ -8,12 +8,12 @@ package com.mycompany.proyecto.examen;
  *
  * @author PC114
  */
-public class Dialog_Descarga extends javax.swing.JDialog {
+public class Dialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form Dialog_Descarga
+     * Creates new form Dialog_Escritorio
      */
-    public Dialog_Descarga(java.awt.Frame parent, boolean modal) {
+    public Dialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -28,53 +28,47 @@ public class Dialog_Descarga extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Label_Descarga = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TextArea_Descarga = new javax.swing.JTextArea();
-        Button_Descarga = new javax.swing.JButton();
+        TextArea_Escritorio = new javax.swing.JTextArea();
+        Label_Escritorio = new javax.swing.JLabel();
+        Button_Escritorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Label_Descarga.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Label_Descarga.setText("Descarga");
+        TextArea_Escritorio.setColumns(20);
+        TextArea_Escritorio.setRows(5);
+        jScrollPane1.setViewportView(TextArea_Escritorio);
 
-        TextArea_Descarga.setColumns(20);
-        TextArea_Descarga.setRows(5);
-        jScrollPane1.setViewportView(TextArea_Descarga);
+        Label_Escritorio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Label_Escritorio.setText("Escritorio");
+        Label_Escritorio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        Button_Descarga.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Button_Descarga.setText("Salir");
-        Button_Descarga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_DescargaActionPerformed(evt);
-            }
-        });
+        Button_Escritorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Button_Escritorio.setText("Cerrar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Button_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Button_Descarga, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(Label_Descarga, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(Label_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(Label_Descarga, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(Label_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Button_Descarga, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Button_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,10 +84,6 @@ public class Dialog_Descarga extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Button_DescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_DescargaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Button_DescargaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,20 +102,21 @@ public class Dialog_Descarga extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dialog_Descarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dialog_Descarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dialog_Descarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dialog_Descarga.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Dialog_Descarga dialog = new Dialog_Descarga(new javax.swing.JFrame(), true);
+                Dialog dialog = new Dialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -138,9 +129,9 @@ public class Dialog_Descarga extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_Descarga;
-    private javax.swing.JLabel Label_Descarga;
-    private javax.swing.JTextArea TextArea_Descarga;
+    private javax.swing.JButton Button_Escritorio;
+    private javax.swing.JLabel Label_Escritorio;
+    private javax.swing.JTextArea TextArea_Escritorio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
