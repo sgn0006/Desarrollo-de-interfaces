@@ -29,45 +29,45 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel_Calculadora = new javax.swing.JLabel();
+        jLabel_Notas = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel_Android = new javax.swing.JLabel();
+        jButton_Calculadora = new javax.swing.JButton();
+        jButton_Notas = new javax.swing.JButton();
+        jButton_Paint = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jButton_Android = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabelUtilidades = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel_Disco = new javax.swing.JLabel();
+        jLabel_Bateria = new javax.swing.JLabel();
+        jLabel_CPU = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jButton_Disco = new javax.swing.JButton();
+        jButton_Bateria = new javax.swing.JButton();
+        jButton_CPU = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton11 = new javax.swing.JButton();
+        jTextArea_NotasR = new javax.swing.JTextArea();
+        jButton_Guardar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabelCarpetas = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel_Escritorio = new javax.swing.JLabel();
+        jLabel_Descargas = new javax.swing.JLabel();
+        jLabel_Documentos = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        jButton_Escritorio = new javax.swing.JButton();
+        jButton_Descargas = new javax.swing.JButton();
+        jButton_Documentos = new javax.swing.JButton();
 
         jPanel1.setLayout(new java.awt.GridLayout(3, 0));
 
@@ -75,11 +75,13 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.GridLayout(2, 6));
 
-        jLabel2.setText("jLabel2");
-        jPanel5.add(jLabel2);
+        jLabel_Calculadora.setText("jLabel2");
+        jLabel_Calculadora.setMaximumSize(new java.awt.Dimension(200, 200));
+        jLabel_Calculadora.setPreferredSize(new java.awt.Dimension(50, 50));
+        jPanel5.add(jLabel_Calculadora);
 
-        jLabel3.setText("jLabel3");
-        jPanel5.add(jLabel3);
+        jLabel_Notas.setText("jLabel3");
+        jPanel5.add(jLabel_Notas);
 
         jLabel4.setText("jLabel4");
         jPanel5.add(jLabel4);
@@ -90,17 +92,17 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jLabel6.setText("jLabel6");
         jPanel5.add(jLabel6);
 
-        jLabel7.setText("jLabel7");
-        jPanel5.add(jLabel7);
+        jLabel_Android.setText("jLabel7");
+        jPanel5.add(jLabel_Android);
 
-        jButton1.setText("jButton1");
-        jPanel5.add(jButton1);
+        jButton_Calculadora.setText("Calculadora");
+        jPanel5.add(jButton_Calculadora);
 
-        jButton2.setText("jButton2");
-        jPanel5.add(jButton2);
+        jButton_Notas.setText("Notas");
+        jPanel5.add(jButton_Notas);
 
-        jButton3.setText("jButton3");
-        jPanel5.add(jButton3);
+        jButton_Paint.setText("Paint");
+        jPanel5.add(jButton_Paint);
 
         jButton4.setText("jButton4");
         jPanel5.add(jButton4);
@@ -108,8 +110,8 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jButton5.setText("jButton5");
         jPanel5.add(jButton5);
 
-        jButton6.setText("jButton6");
-        jPanel5.add(jButton6);
+        jButton_Android.setText("Android Studio");
+        jPanel5.add(jButton_Android);
 
         jPanel2.add(jPanel5);
 
@@ -119,31 +121,32 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel7.setLayout(new java.awt.GridLayout(2, 0));
 
-        jLabel8.setText("jLabel8");
-        jPanel7.add(jLabel8);
+        jLabelUtilidades.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelUtilidades.setText("Utilidades");
+        jPanel7.add(jLabelUtilidades);
 
         jPanel8.setLayout(new java.awt.GridLayout(2, 4));
 
-        jLabel9.setText("jLabel9");
-        jPanel8.add(jLabel9);
+        jLabel_Disco.setText("jLabel9");
+        jPanel8.add(jLabel_Disco);
 
-        jLabel10.setText("jLabel10");
-        jPanel8.add(jLabel10);
+        jLabel_Bateria.setText("jLabel10");
+        jPanel8.add(jLabel_Bateria);
 
-        jLabel11.setText("jLabel11");
-        jPanel8.add(jLabel11);
+        jLabel_CPU.setText("jLabel11");
+        jPanel8.add(jLabel_CPU);
 
         jLabel12.setText("jLabel12");
         jPanel8.add(jLabel12);
 
-        jButton7.setText("jButton7");
-        jPanel8.add(jButton7);
+        jButton_Disco.setText("Disco");
+        jPanel8.add(jButton_Disco);
 
-        jButton8.setText("jButton8");
-        jPanel8.add(jButton8);
+        jButton_Bateria.setText("Bateria");
+        jPanel8.add(jButton_Bateria);
 
-        jButton9.setText("jButton9");
-        jPanel8.add(jButton9);
+        jButton_CPU.setText("CPU");
+        jPanel8.add(jButton_CPU);
 
         jButton10.setText("jButton10");
         jPanel8.add(jButton10);
@@ -152,13 +155,14 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel3.add(jPanel7);
 
-        jLabel13.setText("jLabel13");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setText("Notas Rapidas");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextArea_NotasR.setColumns(20);
+        jTextArea_NotasR.setRows(5);
+        jScrollPane1.setViewportView(jTextArea_NotasR);
 
-        jButton11.setText("jButton11");
+        jButton_Guardar.setText("Guardar");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -175,7 +179,7 @@ public class Panel_Inicio extends javax.swing.JPanel {
                             .addComponent(jLabel13)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(158, 158, 158)
-                                .addComponent(jButton11)))
+                                .addComponent(jButton_Guardar)))
                         .addContainerGap())))
         );
         jPanel6Layout.setVerticalGroup(
@@ -184,9 +188,9 @@ public class Panel_Inicio extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton11)
+                .addComponent(jButton_Guardar)
                 .addGap(10, 10, 10))
         );
 
@@ -196,32 +200,33 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel4.setLayout(new java.awt.GridLayout(3, 0));
 
-        jLabel14.setText("jLabel14");
-        jPanel4.add(jLabel14);
+        jLabelCarpetas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelCarpetas.setText("Carpetas");
+        jPanel4.add(jLabelCarpetas);
 
-        jPanel9.setLayout(new java.awt.GridLayout());
+        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel15.setText("jLabel15");
-        jPanel9.add(jLabel15);
+        jLabel_Escritorio.setText("jLabel15");
+        jPanel9.add(jLabel_Escritorio);
 
-        jLabel16.setText("jLabel16");
-        jPanel9.add(jLabel16);
+        jLabel_Descargas.setText("jLabel16");
+        jPanel9.add(jLabel_Descargas);
 
-        jLabel17.setText("jLabel17");
-        jPanel9.add(jLabel17);
+        jLabel_Documentos.setText("jLabel17");
+        jPanel9.add(jLabel_Documentos);
 
         jPanel4.add(jPanel9);
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 3));
 
-        jButton12.setText("jButton12");
-        jPanel10.add(jButton12);
+        jButton_Escritorio.setText("Escritorio");
+        jPanel10.add(jButton_Escritorio);
 
-        jButton13.setText("jButton13");
-        jPanel10.add(jButton13);
+        jButton_Descargas.setText("Descargas");
+        jPanel10.add(jButton_Descargas);
 
-        jButton14.setText("jButton14");
-        jPanel10.add(jButton14);
+        jButton_Documentos.setText("Documentos");
+        jPanel10.add(jButton_Documentos);
 
         jPanel4.add(jPanel10);
 
@@ -251,36 +256,36 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JButton jButton_Android;
+    private javax.swing.JButton jButton_Bateria;
+    private javax.swing.JButton jButton_CPU;
+    private javax.swing.JButton jButton_Calculadora;
+    private javax.swing.JButton jButton_Descargas;
+    private javax.swing.JButton jButton_Disco;
+    private javax.swing.JButton jButton_Documentos;
+    private javax.swing.JButton jButton_Escritorio;
+    private javax.swing.JButton jButton_Guardar;
+    private javax.swing.JButton jButton_Notas;
+    private javax.swing.JButton jButton_Paint;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelCarpetas;
+    private javax.swing.JLabel jLabelUtilidades;
+    private javax.swing.JLabel jLabel_Android;
+    private javax.swing.JLabel jLabel_Bateria;
+    private javax.swing.JLabel jLabel_CPU;
+    private javax.swing.JLabel jLabel_Calculadora;
+    private javax.swing.JLabel jLabel_Descargas;
+    private javax.swing.JLabel jLabel_Disco;
+    private javax.swing.JLabel jLabel_Documentos;
+    private javax.swing.JLabel jLabel_Escritorio;
+    private javax.swing.JLabel jLabel_Notas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -292,6 +297,6 @@ public class Panel_Inicio extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea_NotasR;
     // End of variables declaration//GEN-END:variables
 }

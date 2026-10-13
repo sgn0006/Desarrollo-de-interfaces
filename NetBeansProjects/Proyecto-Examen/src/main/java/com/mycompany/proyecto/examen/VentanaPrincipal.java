@@ -12,18 +12,18 @@ import java.awt.CardLayout;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private CardLayout carLayout;
+    private CardLayout cardLayout;
     public VentanaPrincipal() {
         initComponents();
     }
 
     private void configurarCardLayout(){
-        carLayout = (CardLayout) jPanel3.getLayout();
+        cardLayout = (CardLayout) jPanel3.getLayout();
         
         jPanel3.add(new Panel_Inicio(), "Inicio");
         jPanel3.add(new Panel_Historial(), "Historial");
     }
-    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +46,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel_Titulo.setText("Basicos del estudiante");
 
         jButton_Ayuda.setText("Ayuda(F10)");
+        jButton_Ayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AyudaActionPerformed(evt);
+            }
+        });
 
         jButton_Historial.setText("Historial");
         jButton_Historial.addActionListener(new java.awt.event.ActionListener() {
@@ -121,12 +126,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HistorialActionPerformed
-        carLayout.show(jPanel2, "Historial");
+        cardLayout.show(jPanel3, "Historial");
     }//GEN-LAST:event_jButton_HistorialActionPerformed
 
     private void jButton_InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InicioActionPerformed
-        carLayout.show(jPanel2, "Inicio");
+        cardLayout.show(jPanel3, "Inicio");
     }//GEN-LAST:event_jButton_InicioActionPerformed
+
+    private void jButton_AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AyudaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_AyudaActionPerformed
 
     /**
      * @param args the command line arguments

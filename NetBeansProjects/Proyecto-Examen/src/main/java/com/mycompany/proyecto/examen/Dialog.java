@@ -30,8 +30,9 @@ public class Dialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextArea_Escritorio = new javax.swing.JTextArea();
-        Label_Escritorio = new javax.swing.JLabel();
-        Button_Escritorio = new javax.swing.JButton();
+        Label_Titulo = new javax.swing.JLabel();
+        Button_dialoj = new javax.swing.JButton();
+        jLabel_carpeta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -39,12 +40,19 @@ public class Dialog extends javax.swing.JDialog {
         TextArea_Escritorio.setRows(5);
         jScrollPane1.setViewportView(TextArea_Escritorio);
 
-        Label_Escritorio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Label_Escritorio.setText("Escritorio");
-        Label_Escritorio.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Label_Titulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Label_Titulo.setText("Escritorio");
+        Label_Titulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        Button_Escritorio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Button_Escritorio.setText("Cerrar");
+        Button_dialoj.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Button_dialoj.setText("Cerrar");
+        Button_dialoj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_dialojActionPerformed(evt);
+            }
+        });
+
+        jLabel_carpeta.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,23 +60,32 @@ public class Dialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Button_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Label_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(Button_dialoj, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Label_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_carpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(Label_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Label_Titulo)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_carpeta, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Button_Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Button_dialoj, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,6 +101,10 @@ public class Dialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Button_dialojActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_dialojActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_dialojActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,9 +150,10 @@ public class Dialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_Escritorio;
-    private javax.swing.JLabel Label_Escritorio;
+    private javax.swing.JButton Button_dialoj;
+    private javax.swing.JLabel Label_Titulo;
     private javax.swing.JTextArea TextArea_Escritorio;
+    private javax.swing.JLabel jLabel_carpeta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
