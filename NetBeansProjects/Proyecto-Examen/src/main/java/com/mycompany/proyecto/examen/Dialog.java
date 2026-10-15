@@ -4,18 +4,55 @@
  */
 package com.mycompany.proyecto.examen;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author PC114
  */
 public class Dialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Dialog_Escritorio
-     */
-    public Dialog(java.awt.Frame parent, boolean modal) {
+    private String rutaCarpeta;
+
+    public Dialog(java.awt.Frame parent, boolean modal, String ruta) {
         super(parent, modal);
         initComponents();
+
+        this.rutaCarpeta = ruta;
+
+        // Cargar los archivos de la ruta recibida
+        cargarCarpeta(this.rutaCarpeta);
+
+        // Centrar el diálogo respecto a su ventana principal
+        setLocationRelativeTo(parent);
+    }
+
+    private void cargarCarpeta(String ruta) {
+        
+        Label_Titulo.setText("Ruta: " + rutaCarpeta);        
+
+        java.io.File carpeta = new java.io.File(ruta);
+
+        javax.swing.DefaultListModel<String> modelo =
+                new javax.swing.DefaultListModel<>();
+
+        if (carpeta.isDirectory()) {
+
+            java.io.File[] archivos = carpeta.listFiles();
+
+            if (archivos != null) {
+                for (java.io.File archivo : archivos) {
+                    modelo.addElement(archivo.getName());
+                }
+            } else {
+                modelo.addElement("No se puede acceder a la carpeta.");
+            }
+
+        } else {
+            modelo.addElement("La carpeta no existe.");
+        }
+
+        jListArchivos.setModel(modelo);
     }
 
     /**
@@ -28,31 +65,31 @@ public class Dialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TextArea_Escritorio = new javax.swing.JTextArea();
         Label_Titulo = new javax.swing.JLabel();
-        Button_dialoj = new javax.swing.JButton();
-        jLabel_carpeta = new javax.swing.JLabel();
+        Button_Dialog = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListArchivos = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        TextArea_Escritorio.setColumns(20);
-        TextArea_Escritorio.setRows(5);
-        jScrollPane1.setViewportView(TextArea_Escritorio);
 
         Label_Titulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Label_Titulo.setText("Escritorio");
         Label_Titulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        Button_dialoj.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Button_dialoj.setText("Cerrar");
-        Button_dialoj.addActionListener(new java.awt.event.ActionListener() {
+        Button_Dialog.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Button_Dialog.setText("Cerrar");
+        Button_Dialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_dialojActionPerformed(evt);
+                Button_DialogActionPerformed(evt);
             }
         });
 
-        jLabel_carpeta.setText("jLabel1");
+        jListArchivos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { " ", " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListArchivos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,16 +99,12 @@ public class Dialog extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(Button_dialoj, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 26, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Label_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel_carpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Button_Dialog, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -79,13 +112,11 @@ public class Dialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(Label_Titulo)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_carpeta, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Button_dialoj, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Button_Dialog, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,59 +133,56 @@ public class Dialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Button_dialojActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_dialojActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Button_dialojActionPerformed
+    private void Button_DialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_DialogActionPerformed
+        dispose();
+    }//GEN-LAST:event_Button_DialogActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info :
+                    javax.swing.UIManager.getInstalledLookAndFeels()) {
+
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Dialog dialog = new Dialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        } catch (ClassNotFoundException |
+                 InstantiationException |
+                 IllegalAccessException |
+                 javax.swing.UnsupportedLookAndFeelException ex) {
+
+            java.util.logging.Logger.getLogger(Dialog.class.getName())
+                    .log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+
+            // Ruta de prueba para ejecutar el diálogo independientemente
+            String ruta = System.getProperty("user.home")
+                    + java.io.File.separator + "Desktop";
+
+            Dialog dialog = new Dialog(
+                    new javax.swing.JFrame(),
+                    true,
+                    ruta
+            );
+
+            dialog.setVisible(true);
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_dialoj;
+    private javax.swing.JButton Button_Dialog;
     private javax.swing.JLabel Label_Titulo;
-    private javax.swing.JTextArea TextArea_Escritorio;
-    private javax.swing.JLabel jLabel_carpeta;
+    private javax.swing.JList<String> jListArchivos;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

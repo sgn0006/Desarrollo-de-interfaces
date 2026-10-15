@@ -5,6 +5,7 @@
 package com.mycompany.proyecto.examen;
 
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -15,14 +16,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private CardLayout cardLayout;
     public VentanaPrincipal() {
         initComponents();
+        configurarCardLayout();
     }
 
-    private void configurarCardLayout(){
-        cardLayout = (CardLayout) jPanel3.getLayout();
-        
-        jPanel3.add(new Panel_Inicio(), "Inicio");
-        jPanel3.add(new Panel_Historial(), "Historial");
-    }
+    private void configurarCardLayout() {
+    cardLayout = new CardLayout();
+
+    jPanel3.setLayout(cardLayout);
+
+    jPanel3.add(new Panel_Inicio(), "Inicio");
+    jPanel3.add(new Panel_Historial(), "Historial");
+
+    cardLayout.show(jPanel3, "Inicio");
+}
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,9 +140,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AyudaActionPerformed
-        // TODO add your handling code here:
+        ayuda();
     }//GEN-LAST:event_jButton_AyudaActionPerformed
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {
+    if (evt.getKeyCode() == KeyEvent.VK_F10) {
+            ayuda();
+        }
+    }
+    
+    private void ayuda(){
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "La fila de arriba son aplicaiones que puedes abrir y usar\n La fila del medio puede mostrarte varias cosas relacionadas al estado del equipo\n Las notas rapidas se explican por si solas\n Las carpetas muestran lo que contienen las carpetas",
+                "Ayuda",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+}
+    
     /**
      * @param args the command line arguments
      */

@@ -4,17 +4,24 @@
  */
 package com.mycompany.proyecto.examen;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author PC114
  */
 public class Panel_Inicio extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelInicio
-     */
     public Panel_Inicio() {
         initComponents();
+        Notas();
     }
 
     /**
@@ -32,14 +39,14 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jLabel_Calculadora = new javax.swing.JLabel();
         jLabel_Notas = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel_Vs_Code = new javax.swing.JLabel();
+        jLabel_Edge = new javax.swing.JLabel();
         jLabel_Android = new javax.swing.JLabel();
         jButton_Calculadora = new javax.swing.JButton();
         jButton_Notas = new javax.swing.JButton();
         jButton_Paint = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonVs_Code = new javax.swing.JButton();
+        jButton_Edge = new javax.swing.JButton();
         jButton_Android = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -48,11 +55,11 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jLabel_Disco = new javax.swing.JLabel();
         jLabel_Bateria = new javax.swing.JLabel();
         jLabel_CPU = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel_Administrador = new javax.swing.JLabel();
         jButton_Disco = new javax.swing.JButton();
         jButton_Bateria = new javax.swing.JButton();
         jButton_CPU = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        jButton_Administrador = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,35 +80,83 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 1));
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.GridLayout(2, 6));
 
-        jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyecto/examen/Calculadora2.png"))); // NOI18N
-        jLabel_Calculadora.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel_Calculadora.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Calculadora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/calculadora.jpeg"))); // NOI18N
+        jLabel_Calculadora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel_Calculadora.setMaximumSize(new java.awt.Dimension(200, 200));
         jLabel_Calculadora.setPreferredSize(new java.awt.Dimension(50, 50));
         jPanel5.add(jLabel_Calculadora);
+
+        jLabel_Notas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Notas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notas.png"))); // NOI18N
         jPanel5.add(jLabel_Notas);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paint.jpeg"))); // NOI18N
         jPanel5.add(jLabel4);
-        jPanel5.add(jLabel5);
-        jPanel5.add(jLabel6);
+
+        jLabel_Vs_Code.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Vs_Code.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visual-studio.png"))); // NOI18N
+        jPanel5.add(jLabel_Vs_Code);
+
+        jLabel_Edge.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Edge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edge.jpg"))); // NOI18N
+        jPanel5.add(jLabel_Edge);
+
+        jLabel_Android.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_Android.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Android.setIcon(new javax.swing.ImageIcon(getClass().getResource("/android.png"))); // NOI18N
         jPanel5.add(jLabel_Android);
 
         jButton_Calculadora.setText("Calculadora");
+        jButton_Calculadora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CalculadoraActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton_Calculadora);
 
         jButton_Notas.setText("Notas");
+        jButton_Notas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NotasActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton_Notas);
 
         jButton_Paint.setText("Paint");
+        jButton_Paint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_PaintActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton_Paint);
 
-        jButton4.setText("jButton4");
-        jPanel5.add(jButton4);
+        jButtonVs_Code.setText("Vs Code");
+        jButtonVs_Code.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVs_CodeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonVs_Code);
 
-        jButton5.setText("jButton5");
-        jPanel5.add(jButton5);
+        jButton_Edge.setText("Edge");
+        jButton_Edge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EdgeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton_Edge);
 
         jButton_Android.setText("Android Studio");
+        jButton_Android.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AndroidActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton_Android);
 
         jPanel2.add(jPanel5);
@@ -110,33 +165,70 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 2));
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new java.awt.GridLayout(2, 0));
 
         jLabelUtilidades.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelUtilidades.setText("Utilidades");
         jPanel7.add(jLabelUtilidades);
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridLayout(2, 4));
+
+        jLabel_Disco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Disco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/disco.png"))); // NOI18N
         jPanel8.add(jLabel_Disco);
+
+        jLabel_Bateria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Bateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/battery.png"))); // NOI18N
         jPanel8.add(jLabel_Bateria);
+
+        jLabel_CPU.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_CPU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CPU.png"))); // NOI18N
         jPanel8.add(jLabel_CPU);
-        jPanel8.add(jLabel12);
+
+        jLabel_Administrador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/task-manager.png"))); // NOI18N
+        jPanel8.add(jLabel_Administrador);
 
         jButton_Disco.setText("Disco");
+        jButton_Disco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DiscoActionPerformed(evt);
+            }
+        });
         jPanel8.add(jButton_Disco);
 
         jButton_Bateria.setText("Bateria");
+        jButton_Bateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BateriaActionPerformed(evt);
+            }
+        });
         jPanel8.add(jButton_Bateria);
 
         jButton_CPU.setText("CPU");
+        jButton_CPU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CPUActionPerformed(evt);
+            }
+        });
         jPanel8.add(jButton_CPU);
 
-        jButton10.setText("jButton10");
-        jPanel8.add(jButton10);
+        jButton_Administrador.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jButton_Administrador.setText("Administrador de tareas");
+        jButton_Administrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AdministradorActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton_Administrador);
 
         jPanel7.add(jPanel8);
 
         jPanel3.add(jPanel7);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setText("Notas Rapidas");
@@ -146,6 +238,11 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea_NotasR);
 
         jButton_Guardar.setText("Guardar");
+        jButton_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_GuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -181,15 +278,26 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
         jPanel1.add(jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.GridLayout(3, 0));
 
         jLabelCarpetas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelCarpetas.setText("Carpetas");
         jPanel4.add(jLabelCarpetas);
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new java.awt.GridLayout(1, 0));
+
+        jLabel_Escritorio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Escritorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desktop.png"))); // NOI18N
         jPanel9.add(jLabel_Escritorio);
+
+        jLabel_Descargas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Descargas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/descarga.png"))); // NOI18N
         jPanel9.add(jLabel_Descargas);
+
+        jLabel_Documentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Documentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/documentos.png"))); // NOI18N
         jPanel9.add(jLabel_Documentos);
 
         jPanel4.add(jPanel9);
@@ -197,12 +305,27 @@ public class Panel_Inicio extends javax.swing.JPanel {
         jPanel10.setLayout(new java.awt.GridLayout(1, 3));
 
         jButton_Escritorio.setText("Escritorio");
+        jButton_Escritorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EscritorioActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton_Escritorio);
 
         jButton_Descargas.setText("Descargas");
+        jButton_Descargas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DescargasActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton_Descargas);
 
         jButton_Documentos.setText("Documentos");
+        jButton_Documentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DocumentosActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton_Documentos);
 
         jPanel4.add(jPanel10);
@@ -231,11 +354,212 @@ public class Panel_Inicio extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_EdgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EdgeActionPerformed
+        try {
+            Runtime.getRuntime().exec("cmd /c start msedge.exe");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Edge");
+        // El comando Runtime.getRuntime().exec es un comando que me recomendo la ia
+    }//GEN-LAST:event_jButton_EdgeActionPerformed
 
+    private void jButton_CalculadoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CalculadoraActionPerformed
+        try {
+            Runtime.getRuntime().exec("cmd /c start calc.exe");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Calculadora");
+    }//GEN-LAST:event_jButton_CalculadoraActionPerformed
+
+    private void jButton_NotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NotasActionPerformed
+        try {
+            Runtime.getRuntime().exec("cmd /c start notepad.exe");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Notas");
+    }//GEN-LAST:event_jButton_NotasActionPerformed
+
+    private void jButton_PaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PaintActionPerformed
+        try {
+            Runtime.getRuntime().exec("cmd /c start mspaint .exe");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Paint");
+    }//GEN-LAST:event_jButton_PaintActionPerformed
+
+    private void jButtonVs_CodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVs_CodeActionPerformed
+        try {
+            Runtime.getRuntime().exec("\"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\"");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Visual Studio Code");
+        // Va a fallar por que la ubicación del archivo es incorrecta
+    }//GEN-LAST:event_jButtonVs_CodeActionPerformed
+
+    private void jButton_AndroidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AndroidActionPerformed
+        try {
+            Runtime.getRuntime().exec("Introducir ruta del archivo");
+        } catch (IOException ex) {
+            System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        registrarAplicacion("Android Studio");
+        // Va a fallar por que la ubicación del archivo es incorrecta
+    }//GEN-LAST:event_jButton_AndroidActionPerformed
+
+    private void jButton_DiscoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DiscoActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Espacio libre en disco:\n C:67 GB libres de 690 GB", //por favor no me lo tengas en cuenta estoy muy cansado
+                "Disco - Espacio",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton_DiscoActionPerformed
+
+    private void jButton_BateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BateriaActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Salud de la bateria:\n75% de salud ",
+                "Bateria - Salud",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton_BateriaActionPerformed
+
+    private void jButton_CPUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CPUActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Uso de la CPU:     Velocidad:\n29%                      1,11GHz",
+                "CPU - Uso",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton_CPUActionPerformed
+
+    private void jButton_AdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AdministradorActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Microsoft Edge     0,1% CPU     120,8MB Memoria        0MB/s Disco        0Mbps Red \nApache NetBeans     0,2% CPU     734,7MB Memoria        0.5MB/s Disco        0.1Mbps Red",
+                "Procesos",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton_AdministradorActionPerformed
+
+    private void jButton_EscritorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EscritorioActionPerformed
+        String ruta = System.getProperty("user.home") + java.io.File.separator + "Desktop";
+        //Busca la ruta
+        java.awt.Frame ventanaPrincipal = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        //Obtenemos el JFrame 
+        Dialog diag = new Dialog(ventanaPrincipal, true, ruta);
+        //Pasamos la ruta al JDialog
+
+        diag.setLocationRelativeTo(ventanaPrincipal);
+        diag.setVisible(true);
+        //Centramos y mostramos el diálogo
+    }//GEN-LAST:event_jButton_EscritorioActionPerformed
+
+    private void jButton_DescargasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DescargasActionPerformed
+        String ruta = System.getProperty("user.home") + java.io.File.separator + "Downloads";
+        java.awt.Frame ventanaPrincipal = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        Dialog diag = new Dialog(ventanaPrincipal, true, ruta);
+        diag.setLocationRelativeTo(ventanaPrincipal);
+        diag.setVisible(true);
+    }//GEN-LAST:event_jButton_DescargasActionPerformed
+
+    private void jButton_DocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DocumentosActionPerformed
+        String ruta = System.getProperty("user.home") + java.io.File.separator + "Documents";
+        java.awt.Frame ventanaPrincipal = (java.awt.Frame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        Dialog diag = new Dialog(ventanaPrincipal, true, ruta);
+        diag.setLocationRelativeTo(ventanaPrincipal);
+        diag.setVisible(true);
+    }//GEN-LAST:event_jButton_DocumentosActionPerformed
+
+    private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
+
+    // Obtener el texto escrito en el JTextArea
+    String texto = jTextArea_NotasR.getText();
+
+    // Guardar en el archivo
+    java.nio.file.Path ruta = java.nio.file.Paths.get(
+        System.getProperty("user.home"),"Documents","notas.txt");
+
+    try {
+    java.nio.file.Files.writeString(
+            ruta,
+            texto,
+            java.nio.charset.StandardCharsets.UTF_8
+    );
+
+    javax.swing.JOptionPane.showMessageDialog(
+            this, "Texto guardado correctamente."
+    );
+
+} catch (java.io.IOException ex) {
+    javax.swing.JOptionPane.showMessageDialog(
+            this, "Error: " + ex.getMessage()
+    );
+}
+    }//GEN-LAST:event_jButton_GuardarActionPerformed
+
+    //Pa que se guarden las notas rapidas
+    private void Notas() {
+
+    java.nio.file.Path ruta = java.nio.file.Paths.get(
+            System.getProperty("user.home"),
+            "Documents",
+            "notas.txt"
+    );
+
+    try {
+        if (java.nio.file.Files.exists(ruta)) {
+
+            String texto = java.nio.file.Files.readString(
+                    ruta,
+                    java.nio.charset.StandardCharsets.UTF_8
+            );
+
+            jTextArea_NotasR.setText(texto);
+
+        } else {
+            jTextArea_NotasR.setText("");
+        }
+
+    } catch (java.io.IOException ex) {
+        javax.swing.JOptionPane.showMessageDialog(
+            this, "Error: " + ex.getMessage());
+    }
+}
+
+    
+    //Pa que el historial fufe
+    private void registrarAplicacion(String nombreAplicacion) {
+
+    Path ruta = Paths.get(
+            System.getProperty("user.home"),
+            "Documents",
+            "historial.txt"
+    );
+
+    DateTimeFormatter formato =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+    String fechaHora = LocalDateTime.now().format(formato);
+
+    String registro = fechaHora + " | "
+            + nombreAplicacion + System.lineSeparator();
+
+    try {
+        Files.write(
+                ruta,
+                registro.getBytes(StandardCharsets.UTF_8),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND
+        );
+
+    } catch (IOException ex) {
+        javax.swing.JOptionPane.showMessageDialog(
+                null,
+                "No se pudo guardar el historial: " + ex.getMessage()
+        );
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonVs_Code;
+    private javax.swing.JButton jButton_Administrador;
     private javax.swing.JButton jButton_Android;
     private javax.swing.JButton jButton_Bateria;
     private javax.swing.JButton jButton_CPU;
@@ -243,17 +567,16 @@ public class Panel_Inicio extends javax.swing.JPanel {
     private javax.swing.JButton jButton_Descargas;
     private javax.swing.JButton jButton_Disco;
     private javax.swing.JButton jButton_Documentos;
+    private javax.swing.JButton jButton_Edge;
     private javax.swing.JButton jButton_Escritorio;
     private javax.swing.JButton jButton_Guardar;
     private javax.swing.JButton jButton_Notas;
     private javax.swing.JButton jButton_Paint;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCarpetas;
     private javax.swing.JLabel jLabelUtilidades;
+    private javax.swing.JLabel jLabel_Administrador;
     private javax.swing.JLabel jLabel_Android;
     private javax.swing.JLabel jLabel_Bateria;
     private javax.swing.JLabel jLabel_CPU;
@@ -261,8 +584,10 @@ public class Panel_Inicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_Descargas;
     private javax.swing.JLabel jLabel_Disco;
     private javax.swing.JLabel jLabel_Documentos;
+    private javax.swing.JLabel jLabel_Edge;
     private javax.swing.JLabel jLabel_Escritorio;
     private javax.swing.JLabel jLabel_Notas;
+    private javax.swing.JLabel jLabel_Vs_Code;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;

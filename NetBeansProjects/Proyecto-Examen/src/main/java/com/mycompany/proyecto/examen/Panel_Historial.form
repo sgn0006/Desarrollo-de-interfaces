@@ -78,6 +78,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar Historial"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_B_HistorialActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

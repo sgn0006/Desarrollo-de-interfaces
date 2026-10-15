@@ -4,6 +4,14 @@
  */
 package com.mycompany.proyecto.examen;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PC114
@@ -15,6 +23,7 @@ public class Panel_Historial extends javax.swing.JPanel {
      */
     public Panel_Historial() {
         initComponents();
+        cargarHistorial();
     }
 
     /**
@@ -39,6 +48,11 @@ public class Panel_Historial extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea_Historial);
 
         jButton_B_Historial.setText("Borrar Historial");
+        jButton_B_Historial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_B_HistorialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,6 +84,44 @@ public class Panel_Historial extends javax.swing.JPanel {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cargarHistorial() {
+
+        Path ruta = Paths.get(System.getProperty("user.home"),"Documents","historial.txt");
+
+        try {
+            if (Files.exists(ruta)) {
+                String historial = Files.readString(
+                        ruta,
+                        StandardCharsets.UTF_8
+                );
+
+                jTextArea_Historial.setText(historial);
+
+            }
+            jTextArea_Historial.setCaretPosition(0);
+
+        } catch (IOException ex) {
+            jTextArea_Historial.setText(
+                    "Error: " + ex.getMessage()
+            );
+        }
+    }
+
+
+    private void jButton_B_HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_B_HistorialActionPerformed
+        try {
+            File archivo = new File("historial.txt");
+            if (archivo.exists()) {
+                // Sobrescribe el archivo dejándolo vacio
+                Files.write(archivo.toPath(), "".getBytes());
+            }
+            jTextArea_Historial.setText(""); // Limpia el área de texto visualmente
+            JOptionPane.showMessageDialog(this, "Historial borrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al borrar el historial", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton_B_HistorialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
