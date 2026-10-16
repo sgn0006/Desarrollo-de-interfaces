@@ -56,6 +56,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel_Y.setText("Y:");
 
         Button.setText("Ayuda(F1)");
+        Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,6 +158,10 @@ public class NewJFrame extends javax.swing.JFrame {
         } else if (evt.getKeyCode() == KeyEvent.VK_F3) {
             setExtendedState(ICONIFIED);
     }//GEN-LAST:event_formKeyPressed
+
+    private void ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonActionPerformed
             jTextField_X.setText("" + y);
             jTextField_Y.setText("" + x);
             Texto_movil.setLocation(x, y);

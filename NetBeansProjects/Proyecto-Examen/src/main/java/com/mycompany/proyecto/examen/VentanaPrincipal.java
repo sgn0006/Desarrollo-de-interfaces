@@ -57,6 +57,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jButton_AyudaActionPerformed(evt);
             }
         });
+        jButton_Ayuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton_AyudaKeyPressed(evt);
+            }
+        });
 
         jButton_Historial.setText("Historial");
         jButton_Historial.addActionListener(new java.awt.event.ActionListener() {
@@ -143,11 +148,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ayuda();
     }//GEN-LAST:event_jButton_AyudaActionPerformed
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {
-    if (evt.getKeyCode() == KeyEvent.VK_F10) {
+    private void jButton_AyudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton_AyudaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_F10) {
             ayuda();
         }
-    }
+    }//GEN-LAST:event_jButton_AyudaKeyPressed
+
     
     private void ayuda(){
             javax.swing.JOptionPane.showMessageDialog(this,

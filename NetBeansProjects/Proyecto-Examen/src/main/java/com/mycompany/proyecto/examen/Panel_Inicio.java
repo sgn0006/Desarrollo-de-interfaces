@@ -393,7 +393,7 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
     private void jButtonVs_CodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVs_CodeActionPerformed
         try {
-            Runtime.getRuntime().exec("\"C:\\Users\\USUARIO\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\"");
+            Runtime.getRuntime().exec("\"C:\\Users\\PC114\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe\"");
         } catch (IOException ex) {
             System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -403,7 +403,7 @@ public class Panel_Inicio extends javax.swing.JPanel {
 
     private void jButton_AndroidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AndroidActionPerformed
         try {
-            Runtime.getRuntime().exec("Introducir ruta del archivo");
+            Runtime.getRuntime().exec("\"C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Android Studio\\Android Studio.lnk\"");
         } catch (IOException ex) {
             System.getLogger(Panel_Inicio.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
