@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>mavenproject1</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <dependencies>
+    <!--Tema claro y oscuro-->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+    <!--Layout nuevo-->
+        <dependency>
+        <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>11.4.3</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <!--Caravteres en UTF-8 para que acepte tildes, ñ...-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Java 21 o posterior-->
+        <maven.compiler.relese>21</maven.compiler.relese>
+        <!--Clase principal [paquete.clase]-->
+        <exec.mainClass>com.mycompany.mavenproject1.Mavenproject1</exec.mainClass>
+    </properties>
+    <name>Ejercicio1</name>
+</project>
