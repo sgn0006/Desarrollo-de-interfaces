@@ -1,24 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.proyecto_bloque2;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author USUARIO
- */
-
-
 public class Datos {
-    
-    private ArrayList<Datos> lista = new ArrayList<>();
-    
-    public void add(Datos dato){
-        lista.add(dato);
+
+    // Lista donde guardamos todos los animales
+    private ArrayList<Animal> lista = new ArrayList<>();
+
+    // Añade un animal a la lista
+    public void add(Animal animal) {
+        lista.add(animal);
     }
-    
-    
+
+    // Devuelve todos los animales
+    public ArrayList<Animal> getLista() {
+        return lista;
+    }
+
+    // Devuelve el número de animales registrados
+    public int getTotal() {
+        return lista.size();
+    }
 }

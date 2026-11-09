@@ -8,17 +8,28 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.toedter.calendar.JDateChooser;
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +43,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import net.miginfocom.swing.MigLayout;
 
@@ -47,7 +59,7 @@ public class VentanaPrincipal extends JFrame {
     private boolean oscuro = false;
 
     //para contar las actualizaciones
-    private int registros = 0;
+    private int actualizacion = 0;
 
     //Primera linea / Menu App
     //La barra del menu
@@ -63,6 +75,7 @@ public class VentanaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             abrirFichero();
+            opcionAbrir.putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("control 4"));
         }
     };
 
@@ -70,6 +83,7 @@ public class VentanaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             guardarFichero();
+            opcionGuardar.putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("control 4"));
         }
     };
 
@@ -77,7 +91,6 @@ public class VentanaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             Nuevo();
-            actualizarVista();
         }
     };
 
@@ -93,6 +106,7 @@ public class VentanaPrincipal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             actualizar();
+            opcionNuevoTema.putValue(Action.ACCELERATOR_KEY,KeyStroke.getKeyStroke("control 4"));
         }
     };
 
@@ -106,15 +120,13 @@ public class VentanaPrincipal extends JFrame {
 
     //Segunda linea / Barra de tareas
     private JToolBar barraHerramientas = new JToolBar();
+    private JMenuItem OpcionNuevo = new JMenuItem(opcionNuevo);
+    private JMenuItem OpcionAbrir = new JMenuItem(opcionAbrir);
+    private JMenuItem OpcionGuardar = new JMenuItem(opcionGuardar);
+    private JMenuItem BarraAnadir = new JMenuItem(barraAnadir);
+    private JMenuItem BarraGenerarInfo = new JMenuItem(barraGenerarInfo);
 
-    private JMenuItem OpcionNuevo = new JMenu(opcionNuevo);
-    private JMenuItem OpcionAbrir = new JMenu(opcionAbrir);
-    private JMenuItem OpcionGuardar = new JMenu(opcionGuardar);
-    private JMenuItem BarraAnadir = new JMenu(barraAnadir);
-    private JMenuItem BarraGenerarInfo = new JMenu(barraGenerarInfo);
-
-
-    //Parte izquierda
+    //Parte izquierda 
     private JLabel nombreLabel = new JLabel("Nombre:");
     private JTextField textNombre = new JTextField("Nombre del paciente");
 
@@ -131,34 +143,55 @@ public class VentanaPrincipal extends JFrame {
     private JTextField affeccionText = new JTextField("");
 
     private JLabel espacieLabel = new JLabel("Especie del paciente:");
-    private JTextField especieText = new JTextField("Gato, Perro...");
+    private JComboBox<String> especieText = new JComboBox<>(new String[]{"Kiwi", "Cóndor", "Pulpo", "Carnotaurus", "Hipocampo", "Doble Elefante Telepata de guerra"});
 
     private JLabel notasLabel = new JLabel("Notas:");
     private JTextArea notasText = new JTextArea(5, 20);
     private JScrollPane scrollText = new JScrollPane(notasText);
 
     private JButton actualizarButton = new JButton("Actualizar");
+    private JTextArea logs = new JTextArea("");
+    private JScrollPane scrollLogs = new JScrollPane(logs);
+
+    private JLabel vacio1 = new JLabel("");
+    private JLabel vacio2 = new JLabel("");
 
     //Grafico
-    private JPanel panelGrafico = new JPanel();
-    private JLabel labelGrafico = new JLabel();
+    // Creamos el objeto que almacena los datos
+    private Datos datos = new Datos();
+
+    // Creamos el panel que dibuja la gráfica
+    private PanelGrafico panelGrafico = new PanelGrafico(datos);
 
     //Label de abajo
-    private JLabel labelEstado = new JLabel();
+    private JLabel labelEstado = new JLabel(actualizacion + " actualizaciones");
+
+    //Para el log
+    private String nombre = logs.getText();
 
     public VentanaPrincipal() {
-        super("Entrada de`pacientes");
+        super("Entrada de pacientes");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //Para poner cosas en la misma linea que el super
-        JPanel panelSuper = new JPanel(new MigLayout());
-                
-        JPanel panel = new JPanel(new MigLayout("wrap 2,insets 20, gap 12 10", "[right] [grow, fill]", ""));
+        //Creo los paneles que servirán para estructurar la aplicación
+        JPanel panelNorte = new JPanel(new MigLayout());
+        JPanel panelOeste = new JPanel(new MigLayout("wrap 2,insets 20, gap 12 10", "[right] [grow, fill]", ""));
+        JPanel panelSur = new JPanel(new MigLayout("insets 4 12 4 8", "[] push []", ""));
 
+        //Datos de ejemplo para poder probar la aplicación (orientativos)
+        LocalDate fechaHoy = LocalDate.now();
+        String fecha = fechaHoy.toString();
+        datos.add(new Animal("Fran",3,7,fecha,"desconocida","Kiwi",""));
+        datos.add(new Animal("Alberto",1000000000,8,fecha,"desconocida","Carnotaurus",""));
+        datos.add(new Animal("Pepe",150,15,fecha,"desconocida","Doble Elefante Telepata de guerra",""));
+        datos.add(new Animal("Juan",1900,23,fecha,"desconocida","Hipocampo",""));
+        datos.add(new Animal("Pedro",2,42,fecha,"desconocida","Pulpo",""));
+        datos.add(new Animal("Francisco",1,3,fecha,"desconocida","Cóndor",""));
+        
         actualizarButton.addActionListener(e -> actualizar());
 
         ingresoChooser.setMinSelectableDate(new Date());
-        ingresoChooser.setDateFormatString("DD/MM/YYYY");
+        ingresoChooser.setDateFormatString("dd/MM/yyyy");
 
         notasText.setLineWrap(true);
         notasText.setWrapStyleWord(true);
@@ -181,6 +214,11 @@ public class VentanaPrincipal extends JFrame {
         menuDatos.add(barraAnadir);
         menuDatos.add(barraGenerarInfo);
 
+        //Atajos de teclado
+        OpcionNuevo.setAccelerator(KeyStroke.getKeyStroke("control 1"));
+        OpcionAbrir.setAccelerator(KeyStroke.getKeyStroke("control 2"));
+        OpcionGuardar.setAccelerator(KeyStroke.getKeyStroke("control 3"));
+
         //Metemos las cosas en el toolbar
         barraHerramientas.add(new JButton(opcionNuevo));
         barraHerramientas.add(new JButton(opcionAbrir));
@@ -189,86 +227,53 @@ public class VentanaPrincipal extends JFrame {
         barraHerramientas.addSeparator();
         barraHerramientas.add(new JButton(barraAnadir));
         barraHerramientas.add(new JButton(barraGenerarInfo));
-        
-        //aplicación en sí
-        panel.add(nombreLabel);
-        panel.add(textNombre);
 
-        panel.add(edadLabel);
-        panel.add(edadSpinner);
+        //panel oeste
+        panelOeste.add(nombreLabel);
+        panelOeste.add(textNombre);
 
-        panel.add(ingresoLabel);
-        panel.add(ingresoChooser);
+        panelOeste.add(edadLabel);
+        panelOeste.add(edadSpinner);
 
-        panel.add(espacieLabel);
-        panel.add(especieText);
+        panelOeste.add(ingresoLabel);
+        panelOeste.add(ingresoChooser);
 
-        panel.add(notasLabel, "top");
-        panel.add(scrollText, "grow,push");
+        panelOeste.add(espacieLabel);
+        panelOeste.add(especieText);
+        panelOeste.add(notasLabel, "top");
+        panelSur.add(labelEstado);
+        notasText.setLineWrap(true);
+        notasText.setWrapStyleWord(true);
+        panelOeste.add(scrollText, "grow,push");
 
-        panelSuper.add(barraHerramientas,BorderLayout.SOUTH);
-        labelGrafico.setBorder(BorderFactory.createEmptyBorder(4, 12, 4, 12));
-        add(panelSuper, BorderLayout.NORTH);
-        add(panel, BorderLayout.SOUTH);
-        add(labelEstado, BorderLayout.SOUTH);
-        add(panel);
+        panelOeste.add(vacio1);
+        panelOeste.add(actualizarButton);
+        panelOeste.add(vacio2);
+        panelOeste.add(scrollLogs, "grow, push");
+
+        panelNorte.add(barraHerramientas, BorderLayout.SOUTH);
+
+        panelGrafico.setBorder(BorderFactory.createEmptyBorder(4, 12, 4, 12));
+
+        add(panelNorte, BorderLayout.NORTH);
+        add(panelOeste, BorderLayout.WEST);
+        add(panelGrafico, BorderLayout.CENTER);
+        add(panelSur, BorderLayout.SOUTH);
 
         pack();
         setMinimumSize(getSize());
         setLocationRelativeTo(null);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //Este no guarda nada
     private void Nuevo() {
+        actualizacion++;
         textNombre.setText("");
         edadSpinner.setValue((int) 0);
         ingresoChooser.setDate(null);
-        especieText.setText("");
+        especieText.setSelectedItem("");
         notasText.setText("");
-        labelEstado.setText(registros + " caracteres");
+        labelEstado.setText(actualizacion + " actualizaciones");
     }
 
     //Alterna entre el tema claro y tema oscuro
@@ -292,8 +297,7 @@ public class VentanaPrincipal extends JFrame {
                 /*
                 No tengo ni idea de como puedo extraer una fecha y no soy lo sificientemente listo para entender la explicación de gemini
                 ingresoChooser.setDate(Files.getDate(selector.getSelectedFile().toPath()));
-                */
-                especieText.setText(Files.readString(selector.getSelectedFile().toPath()));
+                 */
                 notasText.setText(Files.readString(selector.getSelectedFile().toPath()));
                 Nuevo();
             } catch (Exception e) {
@@ -301,7 +305,7 @@ public class VentanaPrincipal extends JFrame {
             }
         }
     }
-    
+
     private void guardarFichero() {
         JFileChooser fileChooser = new JFileChooser();
         int resultado = fileChooser.showSaveDialog(this);
@@ -311,49 +315,40 @@ public class VentanaPrincipal extends JFrame {
             // Aquí puedes implementar la escritura real en el .txt si lo necesitas
         }
     }
-    
 
     //Menu Datos
     //Este guarda lo que tengas puesto
     private void actualizar() {
-        registros++;
+        actualizacion++;
         String fecha = "";
         int edad = (int) edadSpinner.getValue();
         if (ingresoChooser.getDate() != null) {
-            fecha = new SimpleDateFormat("dd/mm/yyyy").format(ingresoChooser.getDate());
+            fecha = new SimpleDateFormat("dd/MM/yyyy").format(ingresoChooser.getDate());
         }
         int estancia = (int) estanciaSpinner.getValue();
 
-        Animal recluso = new Animal(textNombre.getText(), edad, estancia, ingresoChooser.getDate().toString(),
-                affeccionText.getText(), especieText.getText(), notasText.getText());
+        Animal animal = new Animal(textNombre.getText(), edad, estancia, fecha,
+                affeccionText.getText(), especieText.getSelectedItem().toString(), notasText.getText());
+
+        datos.add(animal);
+        panelGrafico.repaint();
+
+        escribirLog(textNombre.getText());
 
         textNombre.setText("");
         edadSpinner.setValue((int) 0);
         ingresoChooser.setDate(null);
-        especieText.setText("");
+        especieText.setSelectedItem("Kiwi");
         notasText.setText("");
-        labelEstado.setText(registros + " caracteres");
-        
-        actualizarVista();
+        labelEstado.setText(actualizacion + " actualizaciones");
+
     }
 
-    private void actualizarVista() {
- 
-        String texto = "";
-        for (Rendimiento r : rendimientos.getLista()) {
-            texto = texto + r.getFecha().format(formatoFecha) + " · " + r.getEquipo()
-                    + " · " + r.getGanados() + "G " + r.getEmpatados() + "E " + r.getPerdidos() + "P"
-                    + " · " + r.getPuntos() + " pts\n";
-        }
-        textAreaLista.setText(texto);
- 
-        labelEstado.setText(String.format("%d equipos · media de %.1f puntos · máximo de %d puntos",
-                rendimientos.getLista().size(), rendimientos.getMediaPuntos(), rendimientos.getMaximo()));
- 
-        // Sin repaint() el dibujo no cambiaría hasta redimensionar la ventana
-        panelRendimiento.repaint();
+    private void escribirLog(String nombre) {
+        String fechaHora = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        logs.append("[" + fechaHora + "] Se ha añadido la mascota: " + nombre + "\n");
     }
-    
+
     private void Generar_informe() {
         JOptionPane.showMessageDialog(
                 this,
@@ -362,4 +357,5 @@ public class VentanaPrincipal extends JFrame {
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
+
 }
