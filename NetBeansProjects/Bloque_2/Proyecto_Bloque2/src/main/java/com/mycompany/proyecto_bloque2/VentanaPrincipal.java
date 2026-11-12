@@ -341,12 +341,7 @@ public class VentanaPrincipal extends JFrame {
 
         escribirLog(textNombre.getText());
 
-        textNombre.setText("");
-        edadSpinner.setValue((int) 0);
-        ingresoChooser.setDate(null);
-        especieText.setSelectedItem("Kiwi");
-        notasText.setText("");
-        labelEstado.setText(actualizacion + " actualizaciones");
+        Nuevo();
 
     }
 
