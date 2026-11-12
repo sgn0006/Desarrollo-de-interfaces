@@ -22,4 +22,8 @@ public class Datos {
     public int getTotal() {
         return lista.size();
     }
+    
+    public void limpiar() {
+    lista.clear();
+}
 }

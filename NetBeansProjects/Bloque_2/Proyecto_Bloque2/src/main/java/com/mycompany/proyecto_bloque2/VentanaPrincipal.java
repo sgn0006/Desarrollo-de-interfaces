@@ -12,6 +12,7 @@ import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -195,6 +196,7 @@ public class VentanaPrincipal extends JFrame {
 
         notasText.setLineWrap(true);
         notasText.setWrapStyleWord(true);
+        scrollText.setMinimumSize(new Dimension(200, 100));
 
         //Añadimos los elementos
         //Barra del menu
@@ -253,8 +255,6 @@ public class VentanaPrincipal extends JFrame {
 
         panelNorte.add(barraHerramientas, BorderLayout.SOUTH);
 
-        panelGrafico.setBorder(BorderFactory.createEmptyBorder(4, 12, 4, 12));
-
         add(panelNorte, BorderLayout.NORTH);
         add(panelOeste, BorderLayout.WEST);
         add(panelGrafico, BorderLayout.CENTER);
@@ -274,7 +274,13 @@ public class VentanaPrincipal extends JFrame {
         especieText.setSelectedItem("");
         notasText.setText("");
         labelEstado.setText(actualizacion + " actualizaciones");
+        limpiarGrafico();
     }
+    
+    private void limpiarGrafico() {
+    datos.limpiar();
+    panelGrafico.repaint();
+}
 
     //Alterna entre el tema claro y tema oscuro
     private void cambiarTema() {
