@@ -46,7 +46,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JREmptyDataSource;
-import org.apache.commons.logging.LogSource;
 
 /**
  *
