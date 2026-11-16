@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="https://www.jasperreports.com/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://www.jasperreports.com/jasperreports https://www.jasperreports.com/xsd/jasperreport.xsd"
+              name="informe_mascotas"
+              pageWidth="595" pageHeight="842"
+              columnWidth="555"
+              leftMargin="20" rightMargin="20"
+              topMargin="25" bottomMargin="25"
+              whenNoDataType="AllSectionsNoDetail">
+
+    <parameter name="titulo" class="java.lang.String"/>
+    <parameter name="numeroMascotas" class="java.lang.Integer"/>
+    <parameter name="estanciaMedia" class="java.lang.Double"/>
+    <parameter name="fechaGeneracion" class="java.lang.String"/>
+
+    <title>
+        <band height="125">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="25" forecolor="#526579"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[GESTIÓN DE PACIENTES]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="32" width="555" height="42" forecolor="#183B56"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="24" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="82" width="555" height="22" forecolor="#526579"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{fechaGeneracion}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="0" y="116" width="555" height="1" forecolor="#AAB7C4"/>
+            </line>
+        </band>
+    </title>
+
+    <detail>
+        <band height="220">
+            <staticText>
+                <reportElement x="0" y="15" width="555" height="28" forecolor="#183B56"/>
+                <textElement verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Resumen de pacientes registrados]]></text>
+            </staticText>
+
+            <rectangle>
+                <reportElement x="0" y="60" width="265" height="105" backcolor="#EEF4F8" forecolor="#D5E0E8" mode="Opaque"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="15" y="73" width="235" height="25" forecolor="#526579"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TOTAL DE MASCOTAS]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="15" y="103" width="235" height="45" forecolor="#183B56"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="28" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{numeroMascotas}]]></textFieldExpression>
+            </textField>
+
+            <rectangle>
+                <reportElement x="290" y="60" width="265" height="105" backcolor="#EEF4F8" forecolor="#D5E0E8" mode="Opaque"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="305" y="73" width="235" height="25" forecolor="#526579"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ESTANCIA MEDIA]]></text>
+            </staticText>
+            <textField pattern="#,##0.00 'días'">
+                <reportElement x="305" y="103" width="235" height="45" forecolor="#183B56"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="28" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{estanciaMedia}]]></textFieldExpression>
+            </textField>
+
+            <staticText>
+                <reportElement x="0" y="185" width="555" height="22" forecolor="#526579"/>
+                <textElement textAlignment="CENTER" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="9" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Informe estadístico generado a partir de los datos registrados en la aplicación.]]></text>
+            </staticText>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="25">
+            <line>
+                <reportElement x="0" y="0" width="555" height="1" forecolor="#AAB7C4"/>
+            </line>
+            <staticText>
+                <reportElement x="0" y="7" width="400" height="15" forecolor="#7A8793"/>
+                <textElement verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="8"/>
+                </textElement>
+                <text><![CDATA[Aplicación de gestión de pacientes]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="455" y="7" width="100" height="15" forecolor="#7A8793"/>
+                <textElement textAlignment="RIGHT" verticalAlignment="MIDDLE">
+                    <font fontName="SansSerif" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
