@@ -223,7 +223,7 @@ public class VentanaPrincipal extends JFrame {
         barraHerramientas.add(new JButton(barraAnadir));
         barraHerramientas.add(new JButton(barraGenerarInfo));
         logs.setEditable(false);
-        
+
         //panel oeste
         panelOeste.add(nombreLabel);
         panelOeste.add(textNombre);
@@ -402,7 +402,9 @@ public class VentanaPrincipal extends JFrame {
 
     //Creamos un nuevo metodo para hacer el informe, no lo sustituimos por que me da pereza arreglar los posibles errores que surgan
     private void generarInforme() {
-        try (java.io.InputStream archivoInforme= getClass().getResourceAsStream("/informe_mascotas.jrxml");){
+        try {
+            java.io.InputStream archivoInforme = getClass().getResourceAsStream("/informe_mascotas.jrxml");
+            
             if (archivoInforme == null) {
                 throw new IOException("No se encuentra informe_mascotas.jrxml");
             }
@@ -435,8 +437,7 @@ public class VentanaPrincipal extends JFrame {
             );
 
             // Para dónde guardar el PDF
-            String ruta = System.getProperty("user.home")
-                    + File.separator + "informe_mascotas.pdf";
+            String ruta = System.getProperty("user.home")+ File.separator + "informe_mascotas.pdf";
 
             // Para exportar el PDF
             JasperExportManager.exportReportToPdfFile(
