@@ -403,10 +403,7 @@ public class VentanaPrincipal extends JFrame {
 
     //Creamos un nuevo metodo para hacer el informe, no lo sustituimos por que me da pereza arreglar los posibles errores que surgan
     private void generarInforme() {
-        try {
-            java.io.InputStream archivoInforme
-                    = getClass().getResourceAsStream("/informe_mascotas.jrxml");
-
+        try (java.io.InputStream archivoInforme= getClass().getResourceAsStream("/informe_mascotas.jrxml");){
             if (archivoInforme == null) {
                 throw new IOException("No se encuentra informe_mascotas.jrxml");
             }
