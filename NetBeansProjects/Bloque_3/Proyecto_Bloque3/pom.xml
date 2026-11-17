@@ -38,8 +38,106 @@
             <artifactId>jasperreports-pdf</artifactId>
             <version>7.0.1</version>
         </dependency>
-        
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
+    
+    
+    <build>
+        
+        <plugins>
+            <!-- Surefire: ejecuta los tests al compilar. Si alguno falla, no se genera nada -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+        
+            <!-- Shade: genera el JAR con las librerías dentro. Sustituye al de assembly porque
+            junta los ficheros de configuración que se repiten (los de JasperReports) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Mismo nombre que con assembly: ...-jar-with-dependencies.jar -->
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- Quita las firmas de las librerías, que dejan de valer al juntarlas -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <!-- La clase principal -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </transformer>
+                                <!-- Junta los ficheros de servicios de todas las librerías -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <!-- Junta las extensiones de JasperReports (núcleo + PDF) -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>jasperreports_extension.properties</resource>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        
+            <!-- Launch4j: genera el .exe metiendo dentro el JAR con dependencias.
+            El plugin descarga Launch4j solo: no hay que instalarlo ni abrirlo.
+            Va DESPUÉS del anterior: los dos se ejecutan al compilar y en el
+            orden en que están escritos, y este necesita el JAR ya hecho -->
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>2.7.0</version>
+                <executions>
+                    <execution>
+                        <id>crear-exe</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Aplicación de ventana: sin consola negra -->
+                            <headerType>gui</headerType>
+                            <!-- El JAR que se mete dentro del .exe -->
+                            <jar>${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar</jar>
+                            <!-- Dónde se crea el .exe. En dist/ y no en target/: Clean and Build
+                            vacía target y se llevaría por delante la carpeta jre -->
+                            <outfile>${project.basedir}/dist/NotaFinal.exe</outfile>
+                            <!-- Título de la ventana de error si no encuentra Java -->
+                            <errTitle>Nota final</errTitle>
+                            <jre>
+                                <!-- Java se busca en la carpeta jre que está junto al .exe -->
+                                <path>jre</path>
+                            </jre>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

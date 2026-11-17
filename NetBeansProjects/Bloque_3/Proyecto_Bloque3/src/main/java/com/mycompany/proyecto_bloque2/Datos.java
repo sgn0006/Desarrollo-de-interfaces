@@ -44,6 +44,6 @@ public class Datos {
             suma += animal.getEstancia();
         }
 
-        return (double) suma / lista.size();
+        return (double) suma / (lista.size() + 1);
     }
 }
